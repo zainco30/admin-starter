@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Header from './header';
 import SideBar from './sidebar';
 import DrawerHeader from './DrawerHeader';
+import Breadcrumbs from 'components/breadCrumb';
 
 export default function Layout({children}: {children: any}) {
   const [open, setOpen] = useState(false);
@@ -21,9 +22,19 @@ export default function Layout({children}: {children: any}) {
       <CssBaseline />
       <Header open={open} handleDrawerOpen={handleDrawerOpen} />
       <SideBar open={open} handleDrawerClose={handleDrawerClose} />
-      <Box component="main" sx={{flexGrow: 1, p: 3}}>
+      <Box
+        component="main"
+        flexDirection="column"
+        justifyContent="space-between"
+        flexGrow={1}
+        padding={1}
+        margin={1}
+      >
         <DrawerHeader />
-        {children}
+        <Box display="flex">
+          <Breadcrumbs />
+        </Box>
+        <Box display="flex">{children}</Box>
       </Box>
     </Box>
   );
